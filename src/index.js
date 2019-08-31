@@ -1,6 +1,10 @@
 'use strict';
 
-import popupHeaderFooter from './modules/popupHeaderFooter';
+import popup from './modules/popup';
+import accordeonTwo from './modules/accordeonTwo';
 
 // popup header/footer
-popupHeaderFooter();
+popup();
+
+// accordeon
+accordeonTwo();
