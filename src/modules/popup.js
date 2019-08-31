@@ -1,9 +1,11 @@
 const popup = () => {
 
     const popupCall = document.querySelector('.popup-call'),
-        contactsPopupBtn = document.querySelectorAll('header .contacts a'),
         popupDiscount = document.querySelector('.popup-discount'),
-        sentenceBtn = document.querySelectorAll('.sentence-btn');
+        popupCheck = document.querySelector('.popup-check'),
+        contactsPopupBtn = document.querySelectorAll('header .contacts a'),
+        sentenceBtn = document.querySelectorAll('.sentence-btn'),
+        checkBtn = document.querySelectorAll('.check-btn');
 
     contactsPopupBtn.forEach((elem) => {
         elem.addEventListener('click', (event) => {
@@ -12,39 +14,34 @@ const popup = () => {
         });
     });
 
-    popupCall.addEventListener('click', (event) => {
+    const popupClickAll = (event) => {
         let target = event.target;
         if (target.classList.contains('popup-close')) {
-            document.getElementById('name_1').setAttribute('disabled', true);
-            document.getElementById('phone_1').setAttribute('disabled', true);
+            event.preventDefault();
             popupCall.style.display = 'none';
+            popupDiscount.style.display = 'none';
+            popupCheck.style.display = 'none';
         } else {
             target = target.closest('.popup-content');
             if (!target) {
                 popupCall.style.display = 'none';
+                popupDiscount.style.display = 'none';
+                popupCheck.style.display = 'none';
             }
         }
-    });
+    };
 
-    sentenceBtn.forEach((elem) => {
+    const eachElem = (elem) => {
         elem.addEventListener('click', () => {
             popupDiscount.style.display = 'block';
         });
-    });
+    };
 
-    popupDiscount.addEventListener('click', (event) => {
-        let target = event.target;
-        if (target.classList.contains('popup-close')) {
-            document.getElementById('name_1').setAttribute('disabled', true);
-            document.getElementById('phone_1').setAttribute('disabled', true);
-            popupCall.style.display = 'none';
-        } else {
-            target = target.closest('.popup-content');
-            if (!target) {
-                popupCall.style.display = 'none';
-            }
-        }
-    });
+    popupCall.addEventListener('click', popupClickAll);
+    sentenceBtn.forEach(eachElem);
+    popupDiscount.addEventListener('click', popupClickAll);
+    checkBtn.forEach(eachElem);
+    popupCheck.addEventListener('click', popupClickAll);
 
 };
 

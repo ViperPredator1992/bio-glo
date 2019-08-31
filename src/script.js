@@ -19,60 +19,34 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        popupCall.addEventListener('click', (event) => {
+        const popupClickAll = (event) => {
             let target = event.target;
             if (target.classList.contains('popup-close')) {
-                document.getElementById('name_1').setAttribute('disabled', true);
-                document.getElementById('phone_1').setAttribute('disabled', true);
+                event.preventDefault();
                 popupCall.style.display = 'none';
-            } else {
-                target = target.closest('.popup-content');
-                if (!target) {
-                    popupCall.style.display = 'none';
-                }
-            }
-        });
-
-        sentenceBtn.forEach((elem) => {
-            elem.addEventListener('click', () => {
-                popupDiscount.style.display = 'block';
-            });
-        });
-
-        popupDiscount.addEventListener('click', (event) => {
-            let target = event.target;
-            if (target.classList.contains('popup-close')) {
-                document.getElementById('name_1').setAttribute('disabled', true);
-                document.getElementById('phone_1').setAttribute('disabled', true);
                 popupDiscount.style.display = 'none';
-            } else {
-                target = target.closest('.popup-content');
-                if (!target) {
-                    popupDiscount.style.display = 'none';
-                }
-            }
-        });
-
-        checkBtn.forEach((elem) => {
-            elem.addEventListener('click', () => {
-                popupCheck.style.display = 'block';
-            });
-        });
-
-        popupCheck.addEventListener('click', (event) => {
-            event.preventDefault();
-            let target = event.target;
-            if (target.classList.contains('popup-close')) {
-                document.getElementById('name_1').setAttribute('disabled', true);
-                document.getElementById('phone_1').setAttribute('disabled', true);
                 popupCheck.style.display = 'none';
             } else {
                 target = target.closest('.popup-content');
                 if (!target) {
+                    popupCall.style.display = 'none';
+                    popupDiscount.style.display = 'none';
                     popupCheck.style.display = 'none';
                 }
             }
-        });
+        };
+
+        const eachElem = (elem) => {
+            elem.addEventListener('click', () => {
+                popupDiscount.style.display = 'block';
+            });
+        };
+
+        popupCall.addEventListener('click', popupClickAll);
+        sentenceBtn.forEach(eachElem);
+        popupDiscount.addEventListener('click', popupClickAll);
+        checkBtn.forEach(eachElem);
+        popupCheck.addEventListener('click', popupClickAll);
 
     };
  
