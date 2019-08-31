@@ -19,6 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 target
             }) => {
                 if (target.classList.contains('popup-close')) {
+                    event.preventDefault();
                     dialog.style.display = 'none';
                 } else {
                     target = target.closest('.popup-content');
@@ -27,12 +28,12 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-
-            popups('header .contacts a', '.popup-call');
-            popups('.sentence-btn', '.popup-discount');
-            popups('.check-btn', '.popup-check');
-
+            
         };
+
+        popups('header .contacts a', '.popup-call');
+        popups('.sentence-btn', '.popup-discount');
+        popups('.check-btn', '.popup-check');
 
     };
  
@@ -59,13 +60,14 @@ window.addEventListener('DOMContentLoaded', () => {
     // More
     const moreCart = () => {
 
-        const more = document.querySelector('.add-sentence-btn'),
-            hide = document.querySelectorAll('hidden');
+        const moreBtn = document.querySelector('.add-sentence-btn');
 
-        hide.forEach((elem) => {
-            elem.addEventListener('click', () => {
-                elem.previousElementSibling.classList.remove('hidden');
+        moreBtn.addEventListener('click', (event) => {
+            event.target.parentNode.querySelectorAll('.hidden, .visible-sm-block').forEach(n => {
+                n.classList.remove('hidden');
+                n.classList.remove('visible-sm-block');
             });
+            moreBtn.style.display = 'none';
         });
 
     };
