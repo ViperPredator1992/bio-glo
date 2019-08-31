@@ -1,48 +1,34 @@
 const popup = () => {
 
-    const popupCall = document.querySelector('.popup-call'),
-        popupDiscount = document.querySelector('.popup-discount'),
-        popupCheck = document.querySelector('.popup-check'),
-        contactsPopupBtn = document.querySelectorAll('header .contacts a'),
-        sentenceBtn = document.querySelectorAll('.sentence-btn'),
-        checkBtn = document.querySelectorAll('.check-btn');
+    const popups = (buttonsSelector, dialogSelector) => {
 
-    contactsPopupBtn.forEach((elem) => {
-        elem.addEventListener('click', (event) => {
-            event.preventDefault();
-            popupCall.style.display = 'block';
-        });
-    });
+        const buttons = document.querySelectorAll(buttonsSelector);
+        const dialog = document.querySelector(dialogSelector);
 
-    const popupClickAll = (event) => {
-        let target = event.target;
-        if (target.classList.contains('popup-close')) {
+        buttons.forEach(n => n.addEventListener('click', (event) => {
             event.preventDefault();
-            popupCall.style.display = 'none';
-            popupDiscount.style.display = 'none';
-            popupCheck.style.display = 'none';
-        } else {
-            target = target.closest('.popup-content');
-            if (!target) {
-                popupCall.style.display = 'none';
-                popupDiscount.style.display = 'none';
-                popupCheck.style.display = 'none';
+            dialog.style.display = 'block';
+        }));
+
+        dialog.addEventListener('click', ({
+            target
+        }) => {
+            if (target.classList.contains('popup-close')) {
+                dialog.style.display = 'none';
+            } else {
+                target = target.closest('.popup-content');
+                if (!target) {
+                    dialog.style.display = 'none';
+                }
             }
-        }
-    };
-
-    const eachElem = (elem) => {
-        elem.addEventListener('click', () => {
-            popupDiscount.style.display = 'block';
         });
-    };
 
-    popupCall.addEventListener('click', popupClickAll);
-    sentenceBtn.forEach(eachElem);
-    popupDiscount.addEventListener('click', popupClickAll);
-    checkBtn.forEach(eachElem);
-    popupCheck.addEventListener('click', popupClickAll);
+        popups('header .contacts a', '.popup-call');
+        popups('.sentence-btn', '.popup-discount');
+        popups('.check-btn', '.popup-check');
 
+    }; 
+    
 };
 
 export default popup;

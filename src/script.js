@@ -70,4 +70,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
     accordeonTwo();
 
+    // More
+    const moreCart = () => {
+
+        const more = document.querySelector('.add-sentence-btn'),
+            hide = document.querySelectorAll('hidden');
+
+        hide.forEach((elem) => {
+            elem.addEventListener('click', () => {
+                elem.previousElementSibling.classList.remove('hidden');
+            });
+        });
+
+    };
+
+    moreCart();
+
 });
