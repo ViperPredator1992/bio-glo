@@ -21,6 +21,15 @@ const sendForm = () => {
             const formData = new FormData(elem);
             let body = {};
 
+            let formDirector = document.querySelector('.director-form'),
+                formInput = document.querySelector('.director-form input');
+
+            if (formDirector) {
+                body = {
+                    'user_quest': formInput.value
+                };
+            }
+
             formData.forEach((val, key) => {
                 body[key] = val;
             });

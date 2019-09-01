@@ -7,8 +7,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const popups = (buttonsSelector, dialogSelector) => {
 
-            const buttons = document.querySelectorAll(buttonsSelector);
-            const dialog = document.querySelector(dialogSelector);
+            const buttons = document.querySelectorAll(buttonsSelector),
+                dialog = document.querySelector(dialogSelector);
 
             buttons.forEach(n => n.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -98,6 +98,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 const formData = new FormData(elem);
                 let body = {};
+
+                let formDirector = document.querySelector('.director-form'),
+                    formInput = document.querySelector('.director-form input');
+                
+                if (formDirector) {
+                    body = { 'user_quest': formInput.value };
+                }
 
                 formData.forEach((val, key) => {
                     body[key] = val;
