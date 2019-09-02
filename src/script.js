@@ -33,6 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         popups('header .contacts a', '.popup-call');
         popups('.sentence-btn', '.popup-discount');
+        popups('.constructor .panel-four .construct-btn', '.popup-discount');
         popups('.check-btn', '.popup-check');
         popups('.director .director-btn', '.popup-consultation');
 
@@ -41,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
     popup();
 
     // accordeon
-    const accordeonTwo = () => {
+    const accordeon = () => {
         
         document.addEventListener('click', (event) => {
             const target = event.target,
@@ -61,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
     };
 
-    accordeonTwo();
+    accordeon();
 
     // More
     const moreCart = () => {

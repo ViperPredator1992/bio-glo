@@ -1,4 +1,4 @@
-const accordeonTwo = () => {
+const accordeon = () => {
 
     document.addEventListener('click', (event) => {
         const target = event.target,
@@ -6,7 +6,7 @@ const accordeonTwo = () => {
             nextStep = target.closest('.construct-btn');
 
         const collapse = heading ? heading.nextElementSibling :
-            nextStep ? target.closest('.panel').nextElementSibling.querySelector('.panel-collapse') : null;
+            nextStep ? target.closest('.panel').nextElementSibling.querySelector('.panel-collapse') : false;
 
         if (collapse) {
             event.preventDefault();
@@ -18,4 +18,4 @@ const accordeonTwo = () => {
 
 };
 
-export default accordeonTwo;
+export default accordeon;

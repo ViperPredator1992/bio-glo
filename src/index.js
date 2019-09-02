@@ -1,7 +1,7 @@
 'use strict';
 
 import popup from './modules/popup';
-import accordeonTwo from './modules/accordeonTwo';
+import accordeon from './modules/accordeon';
 import moreCart from './modules/moreCart';
 import sendForm from './modules/sendForm';
 import calc from './modules/calc';
@@ -10,7 +10,7 @@ import calc from './modules/calc';
 popup();
 
 // accordeon
-accordeonTwo();
+accordeon();
 
 // more
 moreCart();
