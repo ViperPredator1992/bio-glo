@@ -162,7 +162,57 @@ window.addEventListener('DOMContentLoaded', () => {
     // Calc
     const calc = () => {
 
-        
+        const typeSeptic = document.getElementById('myonoffswitch'),
+            titleText = document.querySelectorAll('.title-text'),
+            selectBox = document.querySelectorAll('.select-box'),
+            typeSepticTwo = document.getElementById('myonoffswitch-two');
+
+        class appData {
+            constructor() {
+                this.oneChamber = 1000;
+                this.twoChamber = 1500;
+            }
+            start() {
+                this.firstLevel();
+                this.secondLevel();
+                this.thirdLevel();
+            }
+            firstLevel() {
+                titleText[1].style.display = 'none';
+                selectBox[2].style.display = 'none';
+                selectBox[3].style.display = 'none';
+                
+                typeSeptic.addEventListener('change', () => {
+                    if (typeSeptic.checked) {
+                        titleText[1].style.display = 'none';
+                        selectBox[2].style.display = 'none';
+                        selectBox[3].style.display = 'none';
+                    } else {
+                        titleText[1].style.display = 'block';
+                        selectBox[2].style.display = 'inline-block';
+                        selectBox[3].style.display = 'inline-block';
+                    }
+                });
+            }
+            secondLevel() {
+
+            }
+            thirdLevel() {
+                typeSepticTwo.addEventListener('change', () => {
+                    if (typeSepticTwo.checked) {
+                        typeSepticTwo.setAttribute('display', 'block');
+                    } else {
+                        typeSepticTwo.setAttribute('display', 'none');
+                    }
+                });
+            }
+            eventsListeners() {
+                this.start();
+            }
+        }
+
+        const calculator = new appData();
+        calculator.eventsListeners();
 
     };
 
