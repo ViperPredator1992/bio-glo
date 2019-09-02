@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         popups('header .contacts a', '.popup-call');
         popups('.sentence-btn', '.popup-discount');
-        popups('.constructor .panel-four .construct-btn', '.popup-discount');
+        popups('.call-btn', '.popup-discount');
         popups('.check-btn', '.popup-check');
         popups('.director .director-btn', '.popup-consultation');
 
