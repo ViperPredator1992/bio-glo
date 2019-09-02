@@ -25,9 +25,7 @@ const sendForm = () => {
                 formInput = document.querySelector('.director-form input');
 
             if (formDirector) {
-                body = {
-                    'user_quest': formInput.value
-                };
+                body = { 'user_quest': formInput.value };
             }
 
             formData.forEach((val, key) => {
