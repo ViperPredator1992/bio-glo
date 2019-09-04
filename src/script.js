@@ -165,17 +165,23 @@ window.addEventListener('DOMContentLoaded', () => {
         const typeSeptic = document.getElementById('myonoffswitch'),
             titleText = document.querySelectorAll('.title-text'),
             selectBox = document.querySelectorAll('.select-box'),
-            typeSepticTwo = document.getElementById('myonoffswitch-two');
+            typeSepticTwo = document.getElementById('myonoffswitch-two'),
+            calcResult = document.getElementById('calc-result'),
+            selectBoxType = document.querySelectorAll('select');
+        
+        let resultValue = 0;
 
         class appData {
             constructor() {
                 this.oneChamber = 1000;
                 this.twoChamber = 1500;
+                this.diameterPercentage = 20;
             }
             start() {
                 this.firstLevel();
                 this.secondLevel();
                 this.thirdLevel();
+                this.fourthLevet();
             }
             firstLevel() {
                 titleText[1].style.display = 'none';
@@ -196,6 +202,26 @@ window.addEventListener('DOMContentLoaded', () => {
             }
             secondLevel() {
 
+                selectBoxType.forEach((elem) => {
+                    elem.addEventListener('change', (event) => {
+                        let target = event.target,
+                            selectIndex = target.options[target.selectedIndex].value;
+                            
+                        if (selectIndex === '1.4') {
+                            resultValue = this.oneChamber;
+                            //resultValue = this.twoChamber;
+                        } 
+                        if (selectIndex === '2') {
+                            resultValue = this.oneChamber + (this.oneChamber / 100 * this.diameterPercentage);
+                            //resultValue = this.twoChamber + (this.twoChamber / 100 * this.diameterPercentage);
+                        }
+
+                        calcResult.removeAttribute('disabled');
+                        calcResult.innerHTML = resultValue;
+                        
+                    });
+                });
+
             }
             thirdLevel() {
                 typeSepticTwo.addEventListener('change', () => {
@@ -206,8 +232,14 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+            fourthLevet() {
+                
+                
+                
+            }
             eventsListeners() {
                 this.start();
+                
             }
         }
 
