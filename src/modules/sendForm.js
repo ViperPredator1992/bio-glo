@@ -13,7 +13,6 @@ const sendForm = () => {
     allForm.forEach((elem) => {
 
         elem.addEventListener('submit', (event) => {
-
             event.preventDefault();
             elem.appendChild(statusMessage);
             statusMessage.textContent = loadMessage;
@@ -22,10 +21,25 @@ const sendForm = () => {
             let body = {};
 
             let formDirector = document.querySelector('.director-form'),
-                formInput = document.querySelector('.director-form input');
+                formInput = document.querySelector('.director-form input'),
+                typeSeptic = document.getElementById('myonoffswitch'),
+                typeSepticTwo = document.getElementById('myonoffswitch-two'),
+                calcResult = document.getElementById('calc-result'),
+                selectBoxType = document.querySelectorAll('select'),
+                metrDistance = document.querySelector('.constructor .panel-four input');
 
             if (formDirector) {
-                body = { 'user_quest': formInput.value };
+                body = {
+                    'user_quest': formInput.value,
+                    'typeSeptic': typeSeptic.value,
+                    'firstDiametp': selectBoxType[0].options[selectBoxType[0].selectedIndex].text,
+                    'firstNumberOfRings': selectBoxType[1].options[selectBoxType[1].selectedIndex].text,
+                    'secondDiametp': selectBoxType[2].options[selectBoxType[2].selectedIndex].text,
+                    'secondNumberOfRings': selectBoxType[3].options[selectBoxType[3].selectedIndex].text,
+                    'typeSepticTwo': typeSepticTwo.value,
+                    'distance': metrDistance.value,
+                    'calc_res': calcResult.value
+                };
             }
 
             formData.forEach((val, key) => {

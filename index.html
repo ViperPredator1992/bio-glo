@@ -253,7 +253,7 @@
                              aria-labelledby="headingFour">
                             <div class="panel-body">
                                 <p>Введите расстояние до дома</p>
-                                <input type="text">
+                                <input type="text" name="distance">
                                 <button class="button call-btn">Получить расчет и скидку</button>
                                 <!-- убрал класс - construct-btn, остатки перенес на call-btn -->
                             </div>
@@ -264,7 +264,8 @@
 
             <div class="col-lg-6 col-md-6 col-sm-6 wow fadeInRight">
                 <img class="tank-img" src="img/constructor/septic-tank.png" alt="tank">
-                <span id="calc-result" disabled>примерная стоимость</span>
+                <!-- <input type="text" id="result" name="calc_res" placeholder="примерная стоимость"> -->
+                <textarea id="calc-result" name="calc_res" disabled>примерная стоимость</textarea>
                 <!-- переделал тэг input + type="text" placeholder="примерная стоимость" -->
             </div>
 

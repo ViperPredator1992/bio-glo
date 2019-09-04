@@ -14,12 +14,15 @@ const calc = () => {
             this.oneChamber = 1000;
             this.twoChamber = 1500;
             this.diameterPercentage = 20;
+            this.numberOfRingsSecond = 30;
+            this.numberOfRingsThird = 50;
+            this.ifIs = 1000;
+            this.ifIsNot = 2000;
         }
         start() {
             this.firstLevel();
             this.secondLevel();
             this.thirdLevel();
-            this.fourthLevet();
         }
         firstLevel() {
             titleText[1].style.display = 'none';
@@ -36,23 +39,84 @@ const calc = () => {
                     selectBox[2].style.display = 'inline-block';
                     selectBox[3].style.display = 'inline-block';
                 }
+
+                if (typeSeptic.checked === false) {
+                    titleText[0].style.display = 'none';
+                    selectBox[0].style.display = 'none';
+                    selectBox[1].style.display = 'none';
+                } else {
+                    titleText[0].style.display = 'block';
+                    selectBox[0].style.display = 'inline-block';
+                    selectBox[1].style.display = 'inline-block';
+                }
             });
         }
         secondLevel() {
 
-            selectBoxType.forEach((elem) => {
+            typeSepticTwo.removeAttribute('checked');
+            selectBoxType.forEach((elem, index) => {
                 elem.addEventListener('change', (event) => {
                     let target = event.target,
                         selectIndex = target.options[target.selectedIndex].value;
 
-                    if (selectIndex === '1.4') {
-                        resultValue = this.oneChamber;
-                        //resultValue = this.twoChamber;
+                    if (index == 0) {
+                        if (selectIndex === '1.4') {
+                            resultValue = this.oneChamber;
+                        } else if (selectIndex === '2') {
+                            resultValue = this.oneChamber + (this.oneChamber / 100 * this.diameterPercentage);
+                        }
                     }
-                    if (selectIndex === '2') {
-                        resultValue = this.oneChamber + (this.oneChamber / 100 * this.diameterPercentage);
-                        //resultValue = this.twoChamber + (this.twoChamber / 100 * this.diameterPercentage);
+
+                    if (index == 1) {
+                        if (selectIndex === '1') {
+                            resultValue = this.oneChamber;
+                        } else if (selectIndex === '2') {
+                            resultValue = this.oneChamber + (this.oneChamber / 100 * this.diameterPercentage);
+                            resultValue = resultValue + (resultValue / 100 * this.numberOfRingsSecond);
+                        } else if (selectIndex === '3') {
+                            resultValue = this.oneChamber + (this.oneChamber / 100 * this.diameterPercentage);
+                            resultValue = resultValue + (resultValue / 100 * this.numberOfRingsThird);
+                        }
                     }
+
+                    if (index == 2) {
+                        if (selectIndex === '1.4') {
+                            resultValue = this.twoChamber;
+                        } else if (selectIndex === '2') {
+                            resultValue = this.twoChamber + (this.twoChamber / 100 * this.diameterPercentage);
+                        }
+                    }
+
+                    if (index == 3) {
+                        if (selectIndex === '1') {
+                            resultValue = this.twoChamber;
+                        } else if (selectIndex === '2') {
+                            resultValue = this.twoChamber + (this.twoChamber / 100 * this.diameterPercentage);
+                            resultValue = resultValue + (resultValue / 100 * this.numberOfRingsSecond);
+                        } else if (selectIndex === '3') {
+                            resultValue = this.twoChamber + (this.twoChamber / 100 * this.diameterPercentage);
+                            resultValue = resultValue + (resultValue / 100 * this.numberOfRingsThird);
+                        }
+                    }
+
+                    typeSepticTwo.addEventListener('click', () => {
+                        if (typeSepticTwo.checked) {
+                            if (index == 0) {
+                                resultValue += this.ifIs;
+                            }
+                            if (index == 2) {
+                                resultValue += this.ifIsNot;
+                            }
+                        } else {
+                            if (index == 0) {
+                                resultValue -= this.ifIs;
+                            }
+                            if (index == 2) {
+                                resultValue -= this.ifIsNot;
+                            }
+                        }
+                        calcResult.innerHTML = resultValue;
+                    });
 
                     calcResult.removeAttribute('disabled');
                     calcResult.innerHTML = resultValue;
@@ -62,22 +126,13 @@ const calc = () => {
 
         }
         thirdLevel() {
-            typeSepticTwo.addEventListener('change', () => {
-                if (typeSepticTwo.checked) {
-                    typeSepticTwo.setAttribute('display', 'block');
-                } else {
-                    typeSepticTwo.setAttribute('display', 'none');
-                }
+            const metrDistance = document.querySelector('.constructor .panel-four input');
+            metrDistance.addEventListener('input', () => {
+                metrDistance.value = metrDistance.value.replace(/[^+0-9]+/gi, '');
             });
-        }
-        fourthLevet() {
-
-
-
         }
         eventsListeners() {
             this.start();
-
         }
     }
 
