@@ -122,16 +122,6 @@ window.addEventListener('DOMContentLoaded', () => {
                         selectBox[2].style.display = 'inline-block';
                         selectBox[3].style.display = 'inline-block';
                     }
-
-                    if (typeSeptic.checked === false) {
-                        titleText[0].style.display = 'none';
-                        selectBox[0].style.display = 'none';
-                        selectBox[1].style.display = 'none';
-                    } else {
-                        titleText[0].style.display = 'block';
-                        selectBox[0].style.display = 'inline-block';
-                        selectBox[1].style.display = 'inline-block';
-                    }
                 });
             }
             secondLevel() {
